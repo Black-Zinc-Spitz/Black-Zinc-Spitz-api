@@ -1,27 +1,27 @@
 using Microsoft.AspNetCore.Mvc;
+using Black.Zinc.Spitz.Data;
 using Black.Zinc.Spitz.Domain.Catalog;
 
 namespace Black.Zinc.Spitz.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("/catalog")]
     public class CatalogController : ControllerBase
     {
+       private readonly StoreContext _db;
 
+       public CatalogController(StoreContext db)
+       {
+            _db = db;
+       }
          //added old version back in after looking at the examples
          [HttpGet]
          public IActionResult GetItems()
          {
-             var items = new List<Item>()
-             {
-               new Item("Shirt", "Ohio State shirt.", "Nike", 29.99m),
-               new Item("Shorts", "Ohio State shorts.", "Nike", 44.99m)
-             };
-    
-             return Ok(items);
+             return Ok(_db.Items);
          }
          //end of alteration
-         
+    }   
          
          // step 3 not sure where it goes or if it ovverides the old version so i will add it here
          [HttpGet("{id:int}")]
@@ -57,18 +57,37 @@ namespace Black.Zinc.Spitz.Api.Controllers
 
          //step 6 code starts
          [HttpPut("{id:int}")]
-         public IActionResult Put(int id, Item item)
+         public IActionResult PutItem(int id, [FromBody] Item item)
          {
+            if (id/= item.Id)
+            {
+               return BadRequest();
+            }
+               if (_db.Items.Find(id) == null)
+            {
+               return NotFound();
+            }
+
+            _db.Entry(item).State = EntityState.Modified;
+            _db.SaveChanges();
+            
             return NoContent();
          }
          //step 6 code ends
 
          //step 7 code starts
-         [HttpDelete("{id:int}")]
-         public IActionResult Delete(int id)
+         [HttpDelete("{id:int}/ratings")]
+         public IActionResult PostRating(int id, [FromBody] Rating rating)
          {
-            return NoContent();
+            var item = _db.Items.Find(id);
+            if (item == null)
+            {
+               return NotFound();
+            }
+            item.AddRating(rating);
+            -db.SaveChanges();
+
+            return Ok(item);
          }
     }
-
-}
+}}
