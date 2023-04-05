@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Black.Zinc.Spitz.Api", "Bla
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Black.Zinc.Spitz.Domain", "Black.Zinc.Spitz.Domain\Black.Zinc.Spitz.Domain.csproj", "{E94B1FAF-698E-4A44-88A3-83E85F905998}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Black.Zinc.Spitz.Data", "Black.Zinc.Spitz.Data\Black.Zinc.Spitz.Data.csproj", "{58DB560D-D6CD-400A-B6F5-28EF0A8F114C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{E94B1FAF-698E-4A44-88A3-83E85F905998}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E94B1FAF-698E-4A44-88A3-83E85F905998}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E94B1FAF-698E-4A44-88A3-83E85F905998}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58DB560D-D6CD-400A-B6F5-28EF0A8F114C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58DB560D-D6CD-400A-B6F5-28EF0A8F114C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58DB560D-D6CD-400A-B6F5-28EF0A8F114C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58DB560D-D6CD-400A-B6F5-28EF0A8F114C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
