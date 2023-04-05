@@ -3,12 +3,21 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Black.Zinc.Spitz.Data
 {
-    public class StoreContext : DbContext
-    {
-        public StoreContext(DbContextOptions<StoreContext> options)
+public class StoreContext : DbContext
+{
+    public StoreContext(DbContextOptions<StoreContext> options)
         : base(options)
-        {}
+    { }
 
-        public DbSet<InvalidTimeZoneException> Items { get; set; }
+    public DbSet<Item> Items { get; set; } 
+
+    protected override void OnModelCreating (ModelBuilder builder) 
+    {
+        base.OnModelCreating(builder);
+        DbIntializer.Intialize(builder);
+
     }
+ 
 }
+}
+
