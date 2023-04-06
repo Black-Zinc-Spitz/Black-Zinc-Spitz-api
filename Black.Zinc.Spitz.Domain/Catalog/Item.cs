@@ -23,6 +23,11 @@ namespace Black.Zinc.Spitz.Domain.Catalog
                 throw new ArgumentNullException(description);
             }
 
+            if (string.IsNullOrEmpty(brand))
+            {
+                throw new ArgumentNullException(brand);
+            }
+
             if(price < 0.00m)
             {
                 throw new ArgumentException("Price must be greater than zero.");
