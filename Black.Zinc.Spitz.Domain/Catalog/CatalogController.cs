@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
-using Black.Zinc.Spitz.Data;
 using Black.Zinc.Spitz.Domain.Catalog;
+using Black.Zinc.Spitz.Data;
 
 namespace Black.Zinc.Spitz.Api.Controllers
 {
     [ApiController]
-    [Route("/catalog")]
+    [Route("[controller]")]
     public class CatalogController : ControllerBase
     {
        private readonly StoreContext _db;
@@ -14,6 +14,7 @@ namespace Black.Zinc.Spitz.Api.Controllers
        {
             _db = db;
        }
+
          //added old version back in after looking at the examples
          [HttpGet]
          public IActionResult GetItems()
@@ -27,10 +28,12 @@ namespace Black.Zinc.Spitz.Api.Controllers
          [HttpGet("{id:int}")]
          public IActionResult GetItem(int id)
          {
-             var item = new Item("Shirt", "Ohio State shirt.", "Nike", 29.99m);
-              item.Id = id;
-    
-             return Ok(item);
+             var item = _db.Items.Find(id);
+             if (item == null)
+             {
+               return NotFound();
+             }
+             return Ok();
          }
          //end of step 3 code
 
@@ -39,7 +42,9 @@ namespace Black.Zinc.Spitz.Api.Controllers
          [HttpPost]
          public IActionResult Post(Item item)
          {
-            return Created("/catalog/42", item);
+            _db.Items.Add(item);
+            _db.SaveChanges();
+            return Created($"/catalog/{item.Id}", item);
          }
          //end of step 4 code
 
@@ -47,9 +52,14 @@ namespace Black.Zinc.Spitz.Api.Controllers
          [HttpPost("{id:int}/ratings")]
          public IActionResult PostRating(int id, [FromBody] Rating rating)
          {
-            var item = new Item("Shirt", "Ohio State Shirt.", "Nike", 29.99m);
-            item.Id = id;
+            var item = _db.Items.Find(id);
+            if (item == null)
+            {
+               return NotFound();
+            }
+
             item.AddRating(rating);
+            _db.SaveChanges();
 
             return Ok(item);
          }
@@ -59,7 +69,7 @@ namespace Black.Zinc.Spitz.Api.Controllers
          [HttpPut("{id:int}")]
          public IActionResult PutItem(int id, [FromBody] Item item)
          {
-            if (id/= item.Id)
+            if (id != item.Id)
             {
                return BadRequest();
             }
@@ -76,18 +86,18 @@ namespace Black.Zinc.Spitz.Api.Controllers
          //step 6 code ends
 
          //step 7 code starts
-         [HttpDelete("{id:int}/ratings")]
-         public IActionResult PostRating(int id, [FromBody] Rating rating)
+         [HttpDelete("{id:int}")]
+         public IActionResult DeleteItem(int id)
          {
             var item = _db.Items.Find(id);
             if (item == null)
             {
                return NotFound();
             }
-            item.AddRating(rating);
-            -db.SaveChanges();
+            _db.Items.Remove(item);
+            _db.SaveChanges();
 
-            return Ok(item);
+            return Ok();
          }
     }
-}}
+
