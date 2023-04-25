@@ -1,11 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Black.Zinc.Spitz.Domain.Catalog;
 using Black.Zinc.Spitz.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Black.Zinc.Spitz.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("/catalog")]
     public class CatalogController : ControllerBase
     {
        private readonly StoreContext _db;
@@ -22,7 +23,7 @@ namespace Black.Zinc.Spitz.Api.Controllers
              return Ok(_db.Items);
          }
          //end of alteration
-    }   
+       
          
          // step 3 not sure where it goes or if it ovverides the old version so i will add it here
          [HttpGet("{id:int}")]
@@ -100,4 +101,5 @@ namespace Black.Zinc.Spitz.Api.Controllers
             return Ok();
          }
     }
+}
 

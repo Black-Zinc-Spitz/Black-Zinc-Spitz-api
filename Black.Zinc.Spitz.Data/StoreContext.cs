@@ -1,4 +1,5 @@
 ﻿using Black.Zinc.Spitz.Domain.Catalog;
+using Black.Zinc.Spitz.Domain.Orders;
 using Microsoft.EntityFrameworkCore;
 
 namespace Black.Zinc.Spitz.Data
