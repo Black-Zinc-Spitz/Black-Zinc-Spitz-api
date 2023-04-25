@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddDbContext<StoreContext>(options => 
+builder.Services.AddDbContext<StoreContext>(options =>
     options.UseSqlite("Data Source=../Registrar.sqlite",
     b => b.MigrationsAssembly("Black.Zinc.Spitz.Api"))
 );
