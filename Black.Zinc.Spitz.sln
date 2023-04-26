@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Black.Zinc.Spitz.Domain", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Black.Zinc.Spitz.Data", "Black.Zinc.Spitz.Data\Black.Zinc.Spitz.Data.csproj", "{8B49C0ED-9040-4FAB-86F6-68F0DEBB9C83}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{FAB2A06E-7696-4F57-92D0-3BD926F624E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Black.Zinc.Spitz.Domain.Tests", "tests\Black.Zinc.Spitz.Domain.Tests\Black.Zinc.Spitz.Domain.Tests.csproj", "{06F390AC-4B1A-4E69-985B-63F43B0C35EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +34,12 @@ Global
 		{8B49C0ED-9040-4FAB-86F6-68F0DEBB9C83}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B49C0ED-9040-4FAB-86F6-68F0DEBB9C83}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B49C0ED-9040-4FAB-86F6-68F0DEBB9C83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06F390AC-4B1A-4E69-985B-63F43B0C35EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06F390AC-4B1A-4E69-985B-63F43B0C35EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06F390AC-4B1A-4E69-985B-63F43B0C35EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06F390AC-4B1A-4E69-985B-63F43B0C35EC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{06F390AC-4B1A-4E69-985B-63F43B0C35EC} = {FAB2A06E-7696-4F57-92D0-3BD926F624E3}
 	EndGlobalSection
 EndGlobal
