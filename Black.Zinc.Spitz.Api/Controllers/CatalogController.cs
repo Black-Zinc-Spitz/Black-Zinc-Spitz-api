@@ -82,27 +82,7 @@ namespace Black.Zinc.Spitz.Api.Controllers
             }
 
             _db.Entry(item).State = EntityState.Modified;
-            //_db.SaveChanges();
-
-
-
-            try
-            {
-                _db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!_db.Items.Any(x => x.Id == id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    // rethrow the error, let middlware handle
-                    throw;
-                }
-            }
-
+            _db.SaveChanges();
 
             
             return NoContent();
