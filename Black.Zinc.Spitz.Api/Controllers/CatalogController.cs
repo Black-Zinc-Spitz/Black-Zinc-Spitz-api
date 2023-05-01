@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using Black.Zinc.Spitz.Domain.Catalog;
 using Black.Zinc.Spitz.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace Black.Zinc.Spitz.Api.Controllers
 {
@@ -80,7 +82,28 @@ namespace Black.Zinc.Spitz.Api.Controllers
             }
 
             _db.Entry(item).State = EntityState.Modified;
-            _db.SaveChanges();
+            //_db.SaveChanges();
+
+
+
+            try
+            {
+                _db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!_db.Items.Any(x => x.Id == id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    // rethrow the error, let middlware handle
+                    throw;
+                }
+            }
+
+
             
             return NoContent();
          }
@@ -88,6 +111,7 @@ namespace Black.Zinc.Spitz.Api.Controllers
 
          //step 7 code starts
          [HttpDelete("{id:int}")]
+         [Authorize("delete:catalog")]
          public IActionResult DeleteItem(int id)
          {
             var item = _db.Items.Find(id);

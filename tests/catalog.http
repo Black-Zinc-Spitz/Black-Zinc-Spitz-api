@@ -1,0 +1,34 @@
+### GET '/catalog' root with https
+GET https://localhost:7214/catalog
+
+### GET '/catalog' root with http
+GET http://localhost:5233/catalog
+
+### POST a new Item to the Catalog collection
+POST https://localhost:7214/catalog
+Content-Type: application/json
+
+{
+    "name": "Shoes",
+    "description": "Ohio State shoes",
+    "brand": "Nike",
+    "price": 129.99
+}
+
+### PUT an update to an Item to the Catalog collection
+PUT http://localhost:5233/catalog
+
+### DELETE a Item to the Catalog collection with http
+DELETE http://localhost:5233/catalog/3
+
+### GET token from Auth0
+curl --request POST \
+  --url https://dev-56mtzw3b5fe712el.us.auth0.com/oauth/token \
+  --header 'content-type: application/json' \
+  --data '{"client_id":"4dgEHyCzy0ibNUzqebQ3P41h2P427V2p","client_secret":"uWSK-XnvAfUACpPVe-EUx8u1o12s0xTzSa9VjePvcD6C4OOMhr6cXAeT9RUrN-Fe","audience":"https://black-zinc-spitz","grant_type":"client_credentials"}'
+
+
+### DELETE a Item to the Catalog collection
+curl --request DELETE \
+    --url http://localhost:5233/catalog/3 \
+    --header 'authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkNiQWdXSmdLa3RfWXAzNVBUV0Q4TSJ9.eyJpc3MiOiJodHRwczovL2Rldi01Nm10enczYjVmZTcxMmVsLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiI0ZGdFSHlDenkwaWJOVXpxZWJRM1A0MWgyUDQyN1YycEBjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9ibGFjay16aW5jLXNwaXR6IiwiaWF0IjoxNjgyODkyNzgyLCJleHAiOjE2ODI5NzkxODIsImF6cCI6IjRkZ0VIeUN6eTBpYk5VenFlYlEzUDQxaDJQNDI3VjJwIiwic2NvcGUiOiJkZWxldGU6Y2F0YWxvZyIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyJ9.pt9Qqzh2hPHyn42zxIt6LavXDbw64-zLB180ZFVUKMj4bjSPnn0rezvBh6ZVN8MFxGQ895JW1f6iAsFAeesBVjqZJ5UoLbOZt5f-1DzORkoyLmeF1agcTLpA1CktRVxOx6rv9IQ1vCSpM8k-m9mABXmqzfoCdLdyMzqul0ze99fG5k8qIXyWReRkaiTcOOXYp8iXGmCrkzGioD4-ik012t8syUdImKhtE71JUCGbbvvZIpl-dU82zKFp1jzLXHf92v58wrUyaLeMZCS2dD0RLC2xr3_A9iO_NLMEiKcW8rNGawjLFO5vIK3vN2fn1ztJThKRxoOC_wpYDKrWgkNfEQ'
